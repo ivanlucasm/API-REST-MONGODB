@@ -3,10 +3,11 @@ import { autores } from "../models/index.js";
 
 class autorController{
 
-  static listarAutor =  async (req, res) => {
+  static listarAutor =  async (req, res, next) => {
     try{
-      const autoresResultado = await autores.find();
-      res.status(200).json(autoresResultado);
+      const autoresResultado =  autores.find();
+      req.resultado = autoresResultado;
+      next();
     }catch(erro){
       // eslint-disable-next-line no-undef
       next(erro);
